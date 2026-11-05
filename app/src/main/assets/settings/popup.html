@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<header class="top">
+  <button class="backBtn" id="backBtn">← LMS</button>
+  <button class="cat" id="cat" title="Klik aku!"><img src="icons/logo.png" alt="Maskot"></button>
+  <div class="ttl">
+    <h1>LMS Customizer</h1>
+    <p>Universitas Warmadewa · U-WISE</p>
+  </div>
+  <label class="switch master" title="Aktifkan / matikan ekstensi">
+    <input type="checkbox" id="enabled"><span></span>
+  </label>
+</header>
+<div class="ukir"></div>
+
+<div class="bubble" id="bubble">Om Swastyastu! 👋 Pilih tema favoritmu.</div>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="tema" class="on"><b>🎨</b>Tema</button>
+  <button data-tab="latar"><b>🖼️</b>Latar</button>
+  <button data-tab="header"><b>✨</b>Header</button>
+  <button data-tab="teks"><b>🔤</b>Teks</button>
+  <button data-tab="pengingat"><b>🔔</b>Ingat</button>
+</nav>
+
+<main>
+  <!-- TEMA -->
+  <section class="panel on" id="tab-tema">
+    <h2>Tema cepat</h2>
+    <div class="presets" id="presets"></div>
+
+    <h2>Pengaturan umum</h2>
+    <label class="row"><span>🌙 Dark mode</span><span class="switch"><input type="checkbox" id="dark"><span></span></span></label>
+    <label class="row"><span>🚪 Halaman login di tengah<small>Tanpa banner samping</small></span><span class="switch"><input type="checkbox" id="loginCenter"><span></span></span></label>
+    <label class="row"><span>🔆 Kontras tinggi<small>Teks lebih tegas &amp; jelas</small></span><span class="switch"><input type="checkbox" id="contrast"><span></span></span></label>
+  </section>
+
+  <!-- LATAR -->
+  <section class="panel" id="tab-latar">
+    <h2>Gambar latar</h2>
+    <div class="drop" id="drop">
+      <div class="thumb" id="thumb">🖼️</div>
+      <div class="dropText">
+        <button class="btn gold" id="pick">Pilih gambar / GIF</button>
+        <small>atau seret file ke sini</small>
+      </div>
+      <input type="file" id="bgFile" accept="image/*" hidden>
+    </div>
+    <input type="text" class="text" id="bgUrl" placeholder="…atau tempel URL gambar">
+    <button class="btn ghost small" id="bgClear">🗑️ Hapus latar</button>
+
+    <h2>Efek kaca (translucent)</h2>
+    <label class="row"><span>🪟 Menu menyatu dengan latar<small>Butuh gambar latar</small></span><span class="switch"><input type="checkbox" id="glass"><span></span></span></label>
+    <div class="slider"><span>Kepekatan panel</span><b id="opacityVal"></b><input type="range" id="opacity" min="10" max="100" step="5"></div>
+    <div class="slider"><span>Blur</span><b id="blurVal"></b><input type="range" id="blur" min="0" max="25" step="1"></div>
+  </section>
+
+  <!-- HEADER -->
+  <section class="panel" id="tab-header">
+    <h2>Header gradient</h2>
+    <div class="gradBar" id="gradBar"></div>
+    <label class="row"><span>🌈 Aktifkan gradient</span><span class="switch"><input type="checkbox" id="hdr"><span></span></span></label>
+    <div class="colors">
+      <label>Warna 1<input type="color" id="hdrC1"></label>
+      <label>Warna 2<input type="color" id="hdrC2"></label>
+      <label>Warna 3<input type="color" id="hdrC3"></label>
+    </div>
+    <label class="row"><span>🌊 Gradient bergerak</span><span class="switch"><input type="checkbox" id="hdrAnim"><span></span></span></label>
+    <label class="row"><span>✨ Efek partikel<small>Titik melayang, ikut kursor</small></span><span class="switch"><input type="checkbox" id="particles"><span></span></span></label>
+  </section>
+
+  <!-- TEKS -->
+  <section class="panel" id="tab-teks">
+    <h2>Jenis font</h2>
+    <div class="chips" id="fonts"></div>
+
+    <h2>Warna font</h2>
+    <div class="swatches" id="swatches"></div>
+    <div class="colorLine">
+      <label>Warna sendiri <input type="color" id="color" value="#000000"></label>
+      <button class="btn ghost small" id="colorClear">Bawaan</button>
+      <span class="now" id="colorNow"></span>
+    </div>
+    <label class="row"><span>🔗 Termasuk link &amp; menu</span><span class="switch"><input type="checkbox" id="colorLinks"><span></span></span></label>
+  </section>
+
+  <!-- PENGINGAT (khusus aplikasi) -->
+  <section class="panel" id="tab-pengingat">
+    <h2>Kalender LMS</h2>
+    <div class="statusCard" id="calStatus"></div>
+    <div class="btnrow">
+      <button class="btn gold" id="calConnect">🔗 Hubungkan kalender LMS</button>
+      <button class="btn ghost small" id="calSync">🔄 Sinkron sekarang</button>
+    </div>
+    <input type="text" class="text" id="calUrl" placeholder="…atau tempel link kalender (iCal)">
+
+    <h2>Pengingat</h2>
+    <label class="row"><span>🔔 Aktifkan pengingat<small>Notifikasi absen &amp; tugas</small></span><span class="switch"><input type="checkbox" id="remind"><span></span></span></label>
+    <div class="sub">📍 Absen: ingatkan sebelum mulai</div>
+    <div class="chips multi" id="absenLead"></div>
+    <div class="sub">📝 Tugas: ingatkan sebelum batas</div>
+    <div class="chips multi" id="tugasLead"></div>
+    <div class="btnrow"><button class="btn ghost small" id="testNotif">🔔 Tes notifikasi</button></div>
+
+    <h2>Jadwal terdekat</h2>
+    <div id="upcoming"></div>
+  </section>
+</main>
+
+<footer>
+  <button class="btn ghost small" id="resetAll">↺ Reset semua</button>
+  <span class="saved" id="saved">✓ Tersimpan</span>
+  <span class="made">Dibuat untuk mahasiswa Warmadewa <i>💛</i></span>
+</footer>
+
+<script src="shim_app.js"></script>
+<script src="popup.js"></script>
+<script src="popup_app.js"></script>
+</body>
+</html>
